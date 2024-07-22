@@ -1,21 +1,73 @@
-.App {
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #141414; /* Dark background for a Netflix-like look */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Prevents scrollbars on the body */
+  }
+  
+  .App {
     text-align: center;
+    color: #fff; /* Light text color for contrast */
   }
   
   .game {
-    margin-top: 20px;
-  }
-  
-  .board {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 90vw; /* Responsive width */
+    max-height: 80vh; /* Responsive height */
+    box-sizing: border-box; /* Ensure padding/border is included in width/height */
+    background-color: #222; /* Dark background for the game container */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+  }
+  
+  h1 {
+    font-size: 2.5rem; /* Smaller font size */
+    color: #e50914; /* Netflix red color */
+    margin: 0;
+    margin-bottom: 20px; /* Space between title and game boxes */
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8); /* Slightly transparent background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  h2 {
+    font-size: 1.2rem; /* Smaller font size for winner message */
+    color: #fff;
+    margin: 10px 0;
+  }
+  
+  .board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    max-height: 60vh; /* Prevent board from exceeding view height */
+  }
+  
+  .board-row {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 10px; /* Space between rows of boards */
   }
   
   .layer {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin: 0 5px; /* Space between columns */
+    border: 2px solid #444; /* Slightly lighter border */
+    border-radius: 10px;
+    background-color: #333; /* Dark background for the layer */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   }
   
   .row {
@@ -23,22 +75,112 @@
   }
   
   .cell {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    font-size: 24px;
+    width: 40px; /* Smaller cell width */
+    height: 40px; /* Smaller cell height */
+    margin: 2px;
+    font-size: 1.5rem; /* Smaller font size for symbols */
     text-align: center;
-    line-height: 50px;
+    line-height: 40px; /* Center text vertically */
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: #444; /* Dark background for cells */
+    border: 1px solid #555; /* Border for cells */
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
   }
   
   .cell:hover {
-    background-color: #f0f0f0;
+    background-color: #555; /* Lighter background on hover */
+  }
+  
+  .cell:active {
+    transform: scale(0.95);
+  }
+  
+  .cell.X {
+    color: #e50914; /* Netflix red color for X */
+  }
+  
+  .cell.O {
+    color: #fff; /* White color for O */
   }
   
   .cell:disabled {
-    background-color: #ddd;
+    background-color: #666; /* Disabled cell background */
     cursor: not-allowed;
+  }
+  
+  .new-game-button {
+    background-color: #e50914; /* Netflix red */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px; /* Smaller padding */
+    font-size: 0.9rem; /* Smaller font size */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 15px; /* Space between button and game board */
+  }
+  
+  .new-game-button:hover {
+    background-color: #b81d1d; /* Darker red on hover */
+  }
+  
+  .new-game-button:active {
+    transform: scale(0.95);
+  }
+  
+  .game-header {
+    background: rgba(0, 0, 0, 0); /* Transparent dark background */
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; /* Ensure padding is included in width */
+  }
+  
+  .game-footer {
+    background-color: #141414; /* Dark background for footer */
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    color: #333;
+    font-size: 0.9rem; /* Font size for footer */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; /* Ensure padding is included in width */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .board-container {
+    animation: fadeIn 1s ease-in;
+  }
+  
+  .cell {
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .cell {
+      width: 30px; /* Adjusted width for smaller screens */
+      height: 30px; /* Adjusted height for smaller screens */
+      font-size: 1.2rem; /* Adjusted font size for smaller screens */
+    }
+    
+    h1 {
+      font-size: 1.8rem; /* Adjusted font size for smaller screens */
+    }
+    
+    h2 {
+      font-size: 1rem; /* Adjusted font size for smaller screens */
+    }
   }
   

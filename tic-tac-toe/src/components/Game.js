@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Board from './Board';
+import './Game.css';
 
 const Game = () => {
   const [grid, setGrid] = useState(Array(4).fill().map(() => Array(4).fill().map(() => Array(4).fill(null))));
@@ -84,11 +85,86 @@ const Game = () => {
     return null;
   };
 
+  const startNewGame = () => {
+    setGrid(Array(4).fill().map(() => Array(4).fill().map(() => Array(4).fill(null))));
+    setIsPlayerTurn(true);
+    setWinner(null);
+  };
+
   return (
-    <div className="game">
-      <h1>Three-level Tic Tac Toe</h1>
-      {winner ? <h2>Winner: {winner}</h2> : null}
-      <Board grid={grid} onCellClick={handleCellClick} />
+    <div className="App">
+      <div className="game-header">
+        <h1>3D Tic Tac Toe</h1>
+      </div>
+      <div className="game">
+        <div className="board-container">
+          <div className="board-row">
+            <div className="layer">
+              {[0, 1, 2, 3].map((x) => (
+                <div className="row" key={x}>
+                  {[0, 1, 2, 3].map((y) => (
+                    <div className="cell" 
+                         key={y} 
+                         onClick={() => handleCellClick(x, y, 0)}
+                         disabled={grid[x][y][0]}>
+                      {grid[x][y][0]}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div className="layer">
+              {[0, 1, 2, 3].map((x) => (
+                <div className="row" key={x}>
+                  {[0, 1, 2, 3].map((y) => (
+                    <div className="cell" 
+                         key={y} 
+                         onClick={() => handleCellClick(x, y, 1)}
+                         disabled={grid[x][y][1]}>
+                      {grid[x][y][1]}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="board-row">
+            <div className="layer">
+              {[0, 1, 2, 3].map((x) => (
+                <div className="row" key={x}>
+                  {[0, 1, 2, 3].map((y) => (
+                    <div className="cell" 
+                         key={y} 
+                         onClick={() => handleCellClick(x, y, 2)}
+                         disabled={grid[x][y][2]}>
+                      {grid[x][y][2]}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div className="layer">
+              {[0, 1, 2, 3].map((x) => (
+                <div className="row" key={x}>
+                  {[0, 1, 2, 3].map((y) => (
+                    <div className="cell" 
+                         key={y} 
+                         onClick={() => handleCellClick(x, y, 3)}
+                         disabled={grid[x][y][3]}>
+                      {grid[x][y][3]}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <button className="new-game-button" onClick={startNewGame}>Start New Game</button>
+        {winner && <h2>Winner: {winner}</h2>}
+      </div>
+      <div className="game-footer">
+        <p>	&#169; Jeel Dungarani</p>
+      </div>
     </div>
   );
 };
